@@ -34,28 +34,36 @@ public class ColorController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		updateValue();
-		TxtRed.setOnInputMethodTextChanged(coucou -> {
+		TxtRed.textProperty().addListener(coucou -> {
 			color.setRed(Integer.parseInt(TxtRed.getText()));
 			updateValue();
 		});
-		TxtGreen.setOnInputMethodTextChanged(coucou -> {
+		TxtGreen.textProperty().addListener(coucou -> {
 			color.setGreen(Integer.parseInt(TxtGreen.getText()));
 			updateValue();
 		});
-		TxtBlue.setOnInputMethodTextChanged(coucou -> {
+		TxtBlue.textProperty().addListener(coucou -> {
 			color.setBlue(Integer.parseInt(TxtBlue.getText()));
 			updateValue();
 		});
+
 	}
 
 	private void updateValue() {
-		sliderRed.setValue(color.getRed());
-		sliderGreen.setValue(color.getGreen());
-		sliderBlue.setValue(color.getBlue());
-		TxtHexa.setText(color.getHexValue());
-		TxtRed.setText(Integer.toString(color.getRed()));
-		TxtGreen.setText(Integer.toString(color.getGreen()));
-		TxtBlue.setText(Integer.toString(color.getBlue()));
+		if (!sliderRed.isFocused())
+			sliderRed.setValue(color.getRed());
+		if (!sliderGreen.isFocused())
+			sliderGreen.setValue(color.getGreen());
+		if (!sliderBlue.isFocused())
+			sliderBlue.setValue(color.getBlue());
+		if (!TxtHexa.isFocused())
+			TxtHexa.setText(color.getHexValue());
+		if (!TxtRed.isFocused())
+			TxtRed.setText(Integer.toString(color.getRed()));
+		if (!TxtGreen.isFocused())
+			TxtGreen.setText(Integer.toString(color.getGreen()));
+		if (!TxtBlue.isFocused())
+			TxtBlue.setText(Integer.toString(color.getBlue()));
 		// panelColor.setStyle(value);
 	}
 }
